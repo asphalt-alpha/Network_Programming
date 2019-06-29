@@ -38,4 +38,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.listen(8080,function(){
+  console.log('Wating on Port-8080');
+})
+
 module.exports = app;
