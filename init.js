@@ -7,19 +7,20 @@ var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 var dbConfig = require('../model/dbConfig');
 
+
+
+var salt='';
+var pw='';
+crypto.randomBytes(64,(err,buf)=>{
+    if(err) throw err;
+    salt - buf.toString('hex');
+});
+crypto.pbkdf2('')
+
 var conn = mysql.createConnection(dbConfig);
 conn.connect();
 
-
-router.get('/', function(req, res, next) {
-    //if()
-    res.render('login', { title: 'See the Sea' });
-});
-
-router.post('/',function(req,res){
-    var id = req.body.id;
-    var passwd = req.body.passwd;
-    var sql = 'SELECT * FROM Users WHERE id=?';
+var sql = 'INSERT INTO Users';
     conn.query(sql,[id], function(err, results){
         if(err)
             console.log(err);
@@ -40,7 +41,3 @@ router.post('/',function(req,res){
         });
 
     });
-});
-
-
-  module.exports = router;

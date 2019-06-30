@@ -27,7 +27,7 @@ app.use(session({
   secret: '%^&*^%#$@#$%^',            //암호화 키
   store: new MySQLStore(dbConfig),   
   resave: true,
-  saveUnitialized: false
+  saveUninitialized: false
 }));
 
 app.use('/', indexRouter);
@@ -53,5 +53,5 @@ app.use(function(err, req, res, next) {
 app.listen(8080,function(){
   console.log('Wating on Port-8080');
 })
-
+ 
 module.exports = app;
