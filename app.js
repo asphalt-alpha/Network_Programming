@@ -3,6 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
+var mysql = require('mysql');
+var dbConfig = require('./model/dbConfig');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -19,6 +23,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ 
+  secret: '%^&*^%#$@#$%^',            //암호화 키
+  store: new MySQLStore(dbConfig),   
+  resave: true,
+  saveUnitialized: false
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
