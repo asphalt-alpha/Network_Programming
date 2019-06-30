@@ -6,8 +6,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'See, the Sea' });
 });
 
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'See, the Sea' });
+router.get('/cam', function(req, res, next) {
+  res.render('cam', { title: 'See, the Sea' });
 });
 
 module.exports = router;
