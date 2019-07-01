@@ -19,6 +19,10 @@ router.get('/', function(req, res, next) {
 router.post('/',function(req,res){
     var id = req.body.id;
     var passwd = req.body.passwd;
+
+    console.log('id =', id);
+    console.log('passwd =',passwd);
+
     var sql = 'SELECT * FROM Users WHERE id=?';
     conn.query(sql,[id], function(err, results){
         if(err)
@@ -26,20 +30,37 @@ router.post('/',function(req,res){
 
         if(!results[0])
             console.log('id is not matched');
-
-        var user = results[0];
-        crypto.pbkdf2(passwd,user.salt,100000,64,'sha512',function(err,derivedKey){
-            if(err)
-                console.log(err);
+        else{
+            var user = results[0];
+            const hash = crypto.createHash('sha256').update(passwd).digest('base64');
             
-                if(derivedKey.toString('hex')===user.passwd){
-                    console.log('login success');
-                }else{
-                    console.log('passwd is not patched');
-                }
-        });
+            if(hash === user.passwd){
+                console.log('login success');
+                // req.session.id = user.id;
+                // req.session.save(function(){
+                //     return res.redirect('/cam');
+                // });
+            }else{
+                console.log('passwd is not matched');
+            }
+            // console.log(' d b   salt  : ', user.salt);
+            // console.log(' d b  passwd : ', user.passwd);
+            // crypto.pbkdf2('admin',user.salt, 100000, 64, 'sha512', (err, derivedKey)=>{
+            //     console.log('local passwd : ', derivedKey.toString('base64'));
+            //     if(err) console.log(err);
+                
+            //     if(derivedKey.toString('hex')===user.passwd){
+            //         console.log('login success');
+            //     }else{
+            //         console.log('passwd is not matched');
+                    
+            //     }
+            // });
+        }
 
     });
+
+    res.redirect('/login');
 });
 
 

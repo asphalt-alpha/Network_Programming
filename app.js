@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ 
   secret: '%^&*^%#$@#$%^',            //암호화 키
   store: new MySQLStore(dbConfig),   
-  resave: true,
+  resave: false,
   saveUninitialized: false
 }));
 

@@ -5,39 +5,39 @@ var bodyParser = require('body-parser');
 var crypto = require('crypto');
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
-var dbConfig = require('../model/dbConfig');
+var dbConfig = require('./model/dbConfig');
 
 
 
-var salt='';
-var pw='';
-crypto.randomBytes(64,(err,buf)=>{
-    if(err) throw err;
-    salt - buf.toString('hex');
-});
-crypto.pbkdf2('')
+ var salt='';
+// var pw_original='admin';
+// var pw='';
+// crypto.randomBytes(64,(err,buf)=>{
+//     if(err) console.log(err);
 
-var conn = mysql.createConnection(dbConfig);
-conn.connect();
+//     salt = buf.toString('base64');
+//     console.log('salt = ',salt);
+// });
+// crypto.pbkdf2('admin',salt, 100000, 64, 'sha512', (err, derivedKey)=>{
+//     if(err) console.log(err);
 
-var sql = 'INSERT INTO Users';
-    conn.query(sql,[id], function(err, results){
+//     pw = derivedKey.toString('base64');
+//     console.log('pw = ',pw);
+// });
+
+const hash = crypto.createHash('sha256').update('admin').digest('base64');
+
+setTimeout(function(){
+    var conn = mysql.createConnection(dbConfig);
+    conn.connect();
+    
+    var account = {'id': 'admin', 'passwd': hash, 'salt': salt};
+    var sql = 'INSERT INTO Users SET ?';
+    conn.query(sql,account, function(err, results, fields){
         if(err)
             console.log(err);
-
-        if(!results[0])
-            console.log('id is not matched');
-
-        var user = results[0];
-        crypto.pbkdf2(passwd,user.salt,100000,64,'sha512',function(err,derivedKey){
-            if(err)
-                console.log(err);
-            
-                if(derivedKey.toString('hex')===user.passwd){
-                    console.log('login success');
-                }else{
-                    console.log('passwd is not patched');
-                }
-        });
-
+        else console.log('inserted admin');
     });
+},4000);
+
+
