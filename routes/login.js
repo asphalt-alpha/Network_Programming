@@ -8,12 +8,14 @@ var MySQLStore = require('express-mysql-session')(session);
 var dbConfig = require('../model/dbConfig');
 
 var conn = mysql.createConnection(dbConfig);
-conn.connect();
-
 
 router.get('/', function(req, res, next) {
-    //if()
-    res.render('login', { title: 'See the Sea' });
+    if(req.session.user_id){
+        res.redirect('/cam');
+    }
+    else{
+        res.render('login', { title: 'See the Sea' });
+    }
 });
 
 router.post('/',function(req,res){
@@ -36,31 +38,17 @@ router.post('/',function(req,res){
             
             if(hash === user.passwd){
                 console.log('login success');
-                // req.session.id = user.id;
-                // req.session.save(function(){
-                //     return res.redirect('/cam');
-                // });
+                req.session.user_id = user.id;
+                req.session.save(function(){
+                    res.redirect('/login');
+                });
             }else{
                 console.log('passwd is not matched');
             }
-            // console.log(' d b   salt  : ', user.salt);
-            // console.log(' d b  passwd : ', user.passwd);
-            // crypto.pbkdf2('admin',user.salt, 100000, 64, 'sha512', (err, derivedKey)=>{
-            //     console.log('local passwd : ', derivedKey.toString('base64'));
-            //     if(err) console.log(err);
-                
-            //     if(derivedKey.toString('hex')===user.passwd){
-            //         console.log('login success');
-            //     }else{
-            //         console.log('passwd is not matched');
-                    
-            //     }
-            // });
         }
 
     });
-
-    res.redirect('/login');
+    //conn.end();
 });
 
 
