@@ -3,7 +3,12 @@
     --input-padding-y: .75rem;
     }
     
+    html,body{
+        height: 100%;
+    }
+
     body {
+    display: flex;
     background: #007bff;
     background: linear-gradient(to right, #0062E6, #33AEFF);
     }

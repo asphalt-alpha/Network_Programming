@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>title</title>
-    <link rel='stylesheet' href='styleLogin.css' />
+    <title>See the See</title>
+    <link rel='stylesheet' href='/stylesheets/styleLogin.css' />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <body>
     <div class="container">
@@ -20,14 +20,16 @@
                     <input type="text" name="id" id="inputId" class="form-control" placeholder="User ID" required>
                     <label for="inputId">User ID</label>
                     </div>
-    
+
                     <div class="form-label-group">
                     <input type="password" name="passwd" id="inputPassword" class="form-control" placeholder="Password" required>
                     <label for="inputPassword">Password</label>
                     </div>
-    
-                    <div class="custom-control custom-checkbox mb-3"></div>
-                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">로그인</button>
+
+                    <p class="text-danger"><%= temp%></p>
+
+  
+                    <button class="btn  btn-lg btn-primary btn-block text-uppercase" type="submit">로그인</button>
                 </form>
                 </div>
             </div>

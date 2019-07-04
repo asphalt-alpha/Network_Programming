@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
         res.redirect('/cam');
     }
     else{
-        res.render('login', { title: 'See the Sea' });
+        res.render('login', {temp: '　'});
     }
 });
 
@@ -30,8 +30,11 @@ router.post('/',function(req,res){
         if(err)
             console.log(err);
 
-        if(!results[0])
+        if(!results[0]){
+            //res.send('<script type="text/javascript">alert("ID IS NOT MATCHED");window.location="/login"</script>');
+            res.render('login', {temp: 'ID가 맞지 않습니다.'});
             console.log('id is not matched');
+        }
         else{
             var user = results[0];
             const hash = crypto.createHash('sha256').update(passwd).digest('base64');
@@ -43,6 +46,7 @@ router.post('/',function(req,res){
                     res.redirect('/login');
                 });
             }else{
+                res.render('login', {temp: '비밀번호가 맞지 않습니다.'});
                 console.log('passwd is not matched');
             }
         }
