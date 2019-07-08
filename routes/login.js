@@ -8,13 +8,16 @@ var MySQLStore = require('express-mysql-session')(session);
 var dbConfig = require('../model/dbConfig');
 
 var conn = mysql.createConnection(dbConfig);
+var accountState = '　';
+var accountState = '　';
 
 router.get('/', function(req, res, next) {
     if(req.session.user_id){
         res.redirect('/cam');
     }
     else{
-        res.render('login', {temp: '　'});
+        res.render('login', {temp: accountState});
+        accountState = '　';
     }
 });
 
@@ -32,7 +35,7 @@ router.post('/',function(req,res){
 
         if(!results[0]){
             //res.send('<script type="text/javascript">alert("ID IS NOT MATCHED");window.location="/login"</script>');
-            res.render('login', {temp: 'ID가 맞지 않습니다.'});
+            accountState = 'ID가 맞지 않습니다.';
             console.log('id is not matched');
         }
         else{
@@ -43,17 +46,15 @@ router.post('/',function(req,res){
                 console.log('login success');
                 req.session.user_id = user.id;
                 req.session.save(function(){
-                    res.redirect('/login');
                 });
             }else{
-                res.render('login', {temp: '비밀번호가 맞지 않습니다.'});
+                accountState = '비밀번호가 맞지 않습니다.';
                 console.log('passwd is not matched');
             }
         }
-
+        res.redirect('/login');
     });
     //conn.end();
 });
-
 
   module.exports = router;

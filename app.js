@@ -12,6 +12,7 @@ var dbConfig = require('./model/dbConfig');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
+var myPageRouter = require('./routes/myPage');
 
 var app = express();
 //var conn = mysql.createConnection(dbConfig);
@@ -37,6 +38,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
+app.use('/change', myPageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
