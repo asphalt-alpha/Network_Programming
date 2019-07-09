@@ -12,7 +12,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { 
     title: 'See the Sea'
   });
-  
+  console.log(req.session);
+  console.log(req.session.user_id); 
 });
 
 router.get('/logout', function(req, res, next) {

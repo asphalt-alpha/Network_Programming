@@ -1,5 +1,5 @@
 var dbConfig = {
-    host: '10.53.68.152',
+    host: 'http://localhost',
     port: 3306,
     user     :   'root',
     password :   'admin',
