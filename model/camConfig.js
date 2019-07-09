@@ -1,5 +1,5 @@
 var camConfig = {
-    host: 'http://localhost',
+    host: 'localhost',
     port: 8090,
 };
 
