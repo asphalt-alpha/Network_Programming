@@ -52,7 +52,7 @@ router.get('/led/on', function(req,res,next){
   if(!req.session.user_id){
     res.redirect('/login');
   }else{
-    setLED(2);
+    setLED('2');
     res.redirect('/cam');
   }
 });
@@ -61,7 +61,7 @@ router.get('/led/off', function(req,res,next){
   if(!req.session.user_id){
     res.redirect('/login');
   }else{
-    setLED(1);
+    setLED('1');
     res.redirect('/cam');
   }
 });
