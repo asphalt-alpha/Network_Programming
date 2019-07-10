@@ -7,9 +7,13 @@ var camConfig = require('../model/camConfig');
 var fs = require('fs');
 
 function setLED(flag) {
-	fs.open('/dev/ttyUSB0','a', 666, function(e, fd) {  //쓰기로 열기
-		fs.write(fd, flag, null, null, null, function() {
-			fs.close(fd, function() { });
+  fs.open('/dev/ttyUSB0','a', 666, function(e, fd){  //쓰기로 열기
+    console.log('serial opened');
+		fs.write(fd, flag, null, null, null, function(){
+      console.log('write successed');
+			fs.close(fd, function(){
+        console.log('serial closed');
+      });
 		});	
 	});
 }
