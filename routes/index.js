@@ -8,6 +8,9 @@ var fs = require('fs');
 
 function setLED(flag) {
   fs.open('/dev/ttyUSB1','a', 666, function(e, fd){  //쓰기로 열기
+    if(err){
+      res.redirect('/cam');
+    }
     console.log('serial opened');
     fs.writeSync(fd, flag);
     console.log('write success');
