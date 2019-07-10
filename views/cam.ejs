@@ -18,15 +18,25 @@
                     <img src="<%= cam %>" class="p-5 img-fluid rounded my-auto mx-auto d-block">
                 </div>
                 <div class="pannal col-sm-3 my-auto mx-auto">
-                    <a href="<%= image %>" target="_blank" download>
-                        <button class="text-center btn btn-info"><h4>사진 찍기</h4></button>
-                    </a>
-                    <a href="/led/on">
-                        <button class="text-center btn btn-info"><h4>조명 켜기</h4></button>
-                    </a>
-                    <a href="/led/off">
-                        <button class="text-center btn btn-info"><h4>조명 끄기</h4></button>
-                    </a>    
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-12">
+                                <a href="<%= image %>" target="_blank" download>
+                                    <button class="text-center btn btn-info"><h4>사진 찍기</h4></button>
+                                </a>
+                            </div>
+                            <div class="col-xs-4 col-sm-12">
+                                <a href="/led/on">
+                                    <button class="text-center btn btn-info"><h4>조명 켜기</h4></button>
+                                </a>
+                            </div>
+                            <div class="col-xs-4 col-sm-12">
+                                <a href="/led/off">
+                                    <button class="text-center btn btn-info"><h4>조명 끄기</h4></button>
+                                </a> 
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
