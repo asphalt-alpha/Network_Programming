@@ -5,7 +5,8 @@ var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 var camConfig = require('../model/camConfig');
 
-var src = `http://${camConfig.host}:${camConfig.port}/?action=stream`
+var V_src = `http://${camConfig.host}:${camConfig.port}/?action=stream`
+var I_src = `http://${camConfig.host}:${camConfig.port}/?action=snapshot`
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -28,7 +29,8 @@ router.get('/cam', function(req, res, next) {
   }else{
     res.render('cam', {
       title: 'See the Sea',
-      cam: src
+      cam: V_src,
+      image: I_src
     });
   }
 });
