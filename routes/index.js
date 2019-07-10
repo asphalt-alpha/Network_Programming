@@ -7,7 +7,7 @@ var camConfig = require('../model/camConfig');
 var fs = require('fs');
 
 function setLED(flag) {
-  fs.open('/dev/ttyUSB1','a', 666, function(e, fd){  //쓰기로 열기
+  fs.open('/dev/ttyUSB1','a', 666, function(err, fd){  //쓰기로 열기
     if(err){
       res.redirect('/cam');
     }
