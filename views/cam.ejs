@@ -11,9 +11,9 @@
     </head>
     <body>
         <%- include('./navBar',{state: 'cam'}) %>
+        <img src="<%= cam %>" class="p-5 img-fluid mx-auto my-auto d-block"/>
         <div class="container">
-            <img src="<%= cam %>" class="p-5 img-fluid mx-auto my-auto d-block"/>
-            
+            <a href="<%= cam %>" download><button class="text-center btn btn-info"><h4 class="font-weight-bolder">사진 저장</h4></button></a>
         </div>
         
     
