@@ -36,15 +36,17 @@ function autoSet(){
         }
         else{
             var target = results[0];
-            if(target.start.toString().substring(0,5) == time){
-                set('2');
-            }else if(target.end.toString().substring(0,5) == time){
-                set('1');
-            }
-            else{
-                console.log('time ',time);
-                console.log('start ',target.start.toString().substring(0,5));
-                console.log('end ',target.end.toString().substring(0,5));
+            if(target.enable == 'true'){
+                if(target.start.toString().substring(0,5) == time){
+                    set('2');
+                }else if(target.end.toString().substring(0,5) == time){
+                    set('1');
+                }
+                else{
+                    console.log('time ',time);
+                    console.log('start ',target.start.toString().substring(0,5));
+                    console.log('end ',target.end.toString().substring(0,5));
+                }
             }
         }
     });
