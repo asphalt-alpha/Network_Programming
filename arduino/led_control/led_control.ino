@@ -23,15 +23,19 @@ void loop() {
     Serial.println(data);
     }
   if(data==1){
-    for(int i=0; i<NUMPIXELS; i++){
+    for(int i=NUMPIXELS-1; i>=0; i--){
       pixels.setPixelColor(i,pixels.Color(0,0,0));
+      pixels.show();
+      delay(20);
     }
   }
   else if(data==2){
     for(int i=0; i<NUMPIXELS; i++){
       pixels.setPixelColor(i,pixels.Color(RGBS[0],RGBS[1],RGBS[2]));
+      pixels.show();
+      delay(20);
     }
   }
-  pixels.show();
-    delay(500);
+  //pixels.show();
+    
 }
