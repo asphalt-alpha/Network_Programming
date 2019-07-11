@@ -43,9 +43,11 @@ function autoSet(){
                     set('1');
                 }
                 else{
+                    /*
                     console.log('time ',time);
                     console.log('start ',target.start.toString().substring(0,5));
                     console.log('end ',target.end.toString().substring(0,5));
+                    */
                 }
             }
         }
