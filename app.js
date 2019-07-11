@@ -12,7 +12,11 @@ var dbConfig = require('./model/dbConfig');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
+var ledRouter = require('./routes/led');
 var myPageRouter = require('./routes/myPage');
+
+var moment = require('moment');
+var led = require('./model/ledControl');
 
 var app = express();
 //var conn = mysql.createConnection(dbConfig);
@@ -35,10 +39,13 @@ app.use(session({
   saveUninitialized: true
 }));
 
+setInterval(led.autoSet,30000);
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/change', myPageRouter);
+app.use('/led', ledRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

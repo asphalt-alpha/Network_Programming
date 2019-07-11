@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="images/camera.png" width="30" height="30" alt="">
         </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,12 +10,17 @@
             <% if(state=='cam'){ %>
             <li class="nav-item <$= active >">
             <% } %>
-                <a class="nav-link" href="/cam">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/cam">IP Camera <span class="sr-only">(current)</span></a>
+            </li>
+            <% if(state=='lamp'){ %>
+            <li class="nav-item <$= active >">
+            <% } %>
+                <a class="nav-link" href="/led">Lamp Setting<span class="sr-only">(current)</span></a>
             </li>
             <% if(state=='myPage'){ %>
                 <li class="nav-item <$= active >">
             <% } %>
-                <a class="nav-link" href="/change">Setting</a>
+                <a class="nav-link" href="/change">My Page</a>
             </li>
             <!--
             <li class="nav-item dropdown">
